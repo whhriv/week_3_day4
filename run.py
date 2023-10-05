@@ -34,7 +34,9 @@ def run_blog():
                 #redefine to_do with new input
                 to_do = input('invalid option, please choose 1-5')
             if to_do == '1':
-                blog.log_user_out() ##names not working HERE
+                blog.log_user_out() ##names not working HERE - got fxn from indenting blog.py def log_user_out
+            elif to_do == '2':
+                blog.create_new_posts()
 
 
     #onche user quits
@@ -43,7 +45,7 @@ def run_blog():
     print(blog.posts)
     print('Goodbye!')
 
-if __name__ =="__main__":
+if __name__ == "__main__":
     run_blog()
 
 # my_blog = Blog()
