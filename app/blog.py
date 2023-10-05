@@ -41,3 +41,9 @@ class Blog:
         else:
             print('Username and/or password is incorrect')    
 
+#method to log user out -- by setting current_user to None
+def log_user_out(self):
+    
+    username = self.current_user.username
+    self.current_user = None
+    print(f'{username} has logged out')
