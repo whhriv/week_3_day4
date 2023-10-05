@@ -3,8 +3,9 @@ class Blog:
     def __init__(self):
         self.users = []
         self.posts = []
+        self.current_user = None #instance attribute
 
-    #method to create a new uer instance and add to the blog's user list
+    #method to create a new user instance and add to the blog's user list
 
     def create_new_user(self):
         #get usr info from input
@@ -20,5 +21,23 @@ class Blog:
             #add new user to the blog's user list
             self.users.append(new_user)
             print(f"{new_user} has been created")
-            
+
+#method to log a user in by setting the current_user to a User instance
+    def log_user_in(self):
+        #get the user credentials via input
+        username = input('What is your username?')
+        password = input('gimme your passswd')
+        #loop through blog's user list
+        for user in self.users:
+            #check if uesr's name and pass math inputs
+            if user.username == username and user.check_password(password):
+                #if both are True, set blog's current user to that user
+               
+                self.current_user = user
+                print(f"{user} has logged in.")
+                #once we find correct user we don't need to search anymore
+                break
+        #if we go through FOR loop without breaking
+        else:
+            print('Username and/or password is incorrect')    
 
