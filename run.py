@@ -22,8 +22,10 @@ def run_blog():
                 blog.create_new_user()
             elif to_do == '2':
                 blog.log_user_in()
-            else:
-                print(f'Option {to_do} is a work in progress')
+            # else:
+            #     print(f'Option {to_do} is a work in progress')
+            elif to_do == '3':
+                blog.view_posts()
         else:
             #print menu options for a logged in user
             print("1. signout\n2. create post\n3. view all posts\n4. view single posts\n5. edit a post\n6. delete a post")
@@ -37,9 +39,11 @@ def run_blog():
                 blog.log_user_out() ##names not working HERE - got fxn from indenting blog.py def log_user_out
             elif to_do == '2':
                 blog.create_new_posts()
+            elif to_do= '3':
+                blog.view_posts()
 
 
-    #onche user quits
+    #once user quits
     print('Thanks for checking out the blog')
     print(blog.users)
     print(blog.posts)

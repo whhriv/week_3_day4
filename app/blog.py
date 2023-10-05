@@ -63,3 +63,14 @@ class Blog:
         else:
             print('gotta be logged in to post, yo') #401 unauthorized/no permissions
 
+    #method to view all posts
+    def view_posts(self):
+        #check if there are any posts
+        if self.posts:
+
+            #loop through the blog's post list
+            for post in self.posts:
+                #print the posts( __str__ already formats it for us)
+                print(post)
+        else:
+            print('There are currently no posts for this blog')
