@@ -1,9 +1,22 @@
 from app import Blog
-
+from app.models import Post, User
 def run_blog():
     print("welcome to blog")
     #create an instance of the blog class
     blog = Blog()
+    
+    #CREATE SOME INITIAL DATA
+    user1 = User('brians', 'abc123')  #temp data
+    user2 = User('jumpman23', '6rings')#temp data
+    blog.users.append(user1)#temp data
+    blog.users.append(user2)#temp data
+    post1 = Post('Friday', 'it is friday', user1)#temp data
+    post2 = Post('weekend', 'i am ready for weekend', user2)#temp data
+    blog.posts.append(post1)#temp data
+    blog.posts.append(post2)#temp data
+   
+   
+    #start "running" our blog until user quits
     while True:
         if blog.current_user is None:
 
@@ -26,6 +39,13 @@ def run_blog():
             #     print(f'Option {to_do} is a work in progress')
             elif to_do == '3':
                 blog.view_posts()
+            elif to_do == '4':
+                post_id = input('What is the ID of the post you would like to view?')
+                #if the post is not a digit, reask
+                while not post_id.isdigit():
+                    post_id = input('Invalid ID.  Must be INT, try again')
+                #Call the view single post method with int version of post_id
+                blog.view_post(int(post_id))
         else:
             #print menu options for a logged in user
             print("1. signout\n2. create post\n3. view all posts\n4. view single posts\n5. edit a post\n6. delete a post")
@@ -39,8 +59,22 @@ def run_blog():
                 blog.log_user_out() ##names not working HERE - got fxn from indenting blog.py def log_user_out
             elif to_do == '2':
                 blog.create_new_posts()
-            elif to_do= '3':
+            elif to_do == '3':
                 blog.view_posts()
+            elif to_do == '4':
+                post_id = input('What is the ID of the post you would like to view?')
+                #if the post is not a digit, reask
+                while not post_id.isdigit():
+                    post_id = input('Invalid ID.  Must be INT, try again')
+                #Call the view single post method with int version of post_id
+                blog.view_post(int(post_id))
+            elif to_do == '5':
+                post_id = input('What is the ID of the post you would like to view?')
+                #if the post is not a digit, reask
+                while not post_id.isdigit():
+                    post_id = input('Invalid ID.  Must be INT, try again')
+                #Call the view single post method with int version of post_id
+                blog.view_post(int(post_id))
 
 
     #once user quits
@@ -49,23 +83,9 @@ def run_blog():
     print(blog.posts)
     print('Goodbye!')
 
+
+#if this is executed
 if __name__ == "__main__":
     run_blog()
 
-# my_blog = Blog()
 
-# print(my_blog)
-# print(my_blog.users)
-# print(my_blog.posts)
-
-# my_blog.create_new_user()
-# print(my_blog.users)
-# print(my_blog.posts)
-
-# my_blog.create_new_user()
-# print(my_blog.users)
-# print(my_blog.posts)
-
-# my_blog.create_new_user()
-# print(my_blog.users)
-# print(my_blog.posts)

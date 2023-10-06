@@ -5,6 +5,17 @@ class Blog:
         self.posts = []
         self.current_user = None #instance attribute
 
+    #Private method that will get a post by it's ID or return none if no post with that ID
+    def _get_post_from_id(self, post_id):
+        #loop through all of the posts in the blog
+        for post in self.posts:
+        #if post's ID matches the post_id argument
+            if post.id == post_id:
+                #return post instance
+                return post
+        #if we finish the loop, that means most ID does not exist
+        return post
+
     #method to create a new user instance and add to the blog's user list
 
     def create_new_user(self):
@@ -74,3 +85,40 @@ class Blog:
                 print(post)
         else:
             print('There are currently no posts for this blog')
+
+    #method to view a SINGLE post by ID
+    def view_post(self, post_id):
+        post = self._get_post_from_id(post_id)
+        if post:
+            print(post)
+        else:
+            print(f"post with an ID of {post_id} does not exist") #404 not found
+
+    #method to edit post by ID
+    def edit_post_method(self, post_id):
+        post = self._get_post_from_id(post_id)
+        if post:
+            #check to see if logged in user is author or post
+            if post.author == self.current_user:
+                #print the post so the user can see what they are editing
+                print(post)
+
+                #ask for new title or have them skip to keep
+                new_title = input("Enter new title or type 'skip' to keep current title")
+                if new_title.lower() != 'skip':
+                    #set title attribute on post to the new title
+                    post.title = new_title
+
+                new_body = input("Enter new title or type 'skip' to keep current title")
+                if new_body.lower() != 'skip':
+                    #set body attribute on post to the new title
+                    post.body = new_body
+            #if the user is logged in but not the author
+            elif self.current_user is not None:
+                print("You don't have permission to edit this post") #403 forbidden
+            else: 
+                print("you must be logged in to perform this action")    #401 unauthorized
+                
+
+        else:
+            print(f"Post with an ID of {post_id} does not exist")
