@@ -122,3 +122,29 @@ class Blog:
 
         else:
             print(f"Post with an ID of {post_id} does not exist")
+
+    #method to delete a post by ID
+    def delete_post(self, post_id):
+        post = self._get_post_from_id(post_id)
+        if post:
+            #check to see if logged in user is author or post
+            if post.author == self.current_user:
+                #print the post so the user can see what they are editing
+                print(post)
+
+                you_sure = input('Are you sure you want to delete this post, y to confirm n to abort').lower()
+                if you_sure == 'yes' or you_sure == 'y':
+                    #remove the post from blogs post
+                    self.posts.remove(post)
+                    print(f"{post.title} has been removed" )
+                else:
+                    print(f"Okay, we will not delee {post.title}")
+
+            elif self.current_user is not None:
+                print("You don't have permission to edit this post") #403 forbidden
+            else: 
+                print("you must be logged in to perform this action")    #401 unauthorized
+                
+
+        else:
+            print(f"Post with an ID of {post_id} does not exist")

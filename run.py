@@ -75,7 +75,13 @@ def run_blog():
                     post_id = input('Invalid ID.  Must be INT, try again')
                 #Call the view single post method with int version of post_id
                 blog.view_post(int(post_id))
-
+            elif to_do == '6':
+                post_id = input('What is the ID of the post you would like to delete?')
+                while not post_id.isdigit():
+                    post_id = input('invalid ID must be INT please enter ID again')
+                blog.delete_post(int(post_id))
+##          elif to_do == '7':
+                blog.current_user.display_image()
 
     #once user quits
     print('Thanks for checking out the blog')
